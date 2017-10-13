@@ -1,3 +1,4 @@
+import { ProductEditGuard } from './product-guard.service';
 import { ProductEditInfoComponent } from './product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit-tags.component';
 import { ProductResolver } from './product-resolver.service';
@@ -18,40 +19,35 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     RouterModule.forChild([
       {
-        path: 'products',
+        path: '',
+        component: ProductListComponent
+      },
+      {
+        path: ':id',
+        component: ProductDetailComponent,
+        resolve: { product: ProductResolver }
+      },
+      {
+        path: ':id/edit',
+        component: ProductEditComponent,
+        resolve: { product: ProductResolver },
+        canDeactivate: [ProductEditGuard],
         children: [
           {
             path: '',
-            component: ProductListComponent
+            redirectTo: 'info',
+            pathMatch: 'full'
           },
           {
-            path: ':id',
-            component: ProductDetailComponent,
-            resolve: { product: ProductResolver }
+            path: 'info',
+            component: ProductEditInfoComponent
           },
           {
-            path: ':id/edit',
-            component: ProductEditComponent,
-            resolve: { product: ProductResolver },
-            children: [
-              {
-                path: '',
-                redirectTo: 'info',
-                pathMatch: 'full'
-              },
-              {
-                path: 'info',
-                component: ProductEditInfoComponent
-              },
-              {
-                path: 'tags',
-                component: ProductEditTagsComponent
-              }
-            ]
+            path: 'tags',
+            component: ProductEditTagsComponent
           }
         ]
-      },
-
+      }
     ])
   ],
   declarations: [

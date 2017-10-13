@@ -14,7 +14,7 @@ export class ProductResolver implements Resolve<IProduct> {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IProduct> {
         let id = route.params['id'];
 
-        if (isNaN(id)) {
+        if (isNaN(+id)) {
             console.log(`Product id was not a number: ${id}`);
             this.router.navigate(['/products']);
             return Observable.of(null);
@@ -31,7 +31,7 @@ export class ProductResolver implements Resolve<IProduct> {
             })
             .catch(error => {
                 console.log(`Retrieval error: ${error}`);
-                this.router.navigate(['/prducts']);
+                this.router.navigate(['/products']);
                 return Observable.of(null);
             });
     }

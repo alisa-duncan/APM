@@ -59,7 +59,7 @@
                             </ai-star>
                        </td>
                        <td>
-                            <a class="btn btn-primary" [routerLink]="['/products', product.id, 'edit']">
+                            <a class="btn btn-primary" [routerLink]="['/products', product.id, 'edit', { outlets: { popup: ['summary', product.id]}}]">
                                 Edit
                             </a>
                         </td>
