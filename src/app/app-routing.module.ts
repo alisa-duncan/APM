@@ -11,11 +11,11 @@ imports: [
         { path: 'welcome', component: WelcomeComponent },
         {
             path: 'products',
-            canActivate: [ AuthGuard ],
-            data: { preload: false },
+            //canActivate: [ AuthGuard ],
+            data: { preload: false, animation: 'product' },
             loadChildren: 'app/products/product.module#ProductModule'
         },
-        { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+        { path: '', redirectTo: 'welcome', pathMatch: 'full', data: { animation: 'welcome' } },
         { path: '**', component: PageNotFoundComponent }
     ],
     { preloadingStrategy: PreloadAllModules })

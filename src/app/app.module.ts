@@ -2,6 +2,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -22,7 +23,8 @@ import { MessageModule } from './messages/message.module';
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
     UserModule,
     MessageModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,

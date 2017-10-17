@@ -60,7 +60,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   providers: [
     ProductService,
-    ProductResolver
+    ProductResolver,
+    ProductEditGuard
   ]
 })
 export class ProductModule { }
