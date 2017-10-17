@@ -1,3 +1,4 @@
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit }  from '@angular/core';
 
@@ -6,7 +7,15 @@ import { ProductService } from './product.service';
 
 @Component({
     templateUrl: './app/products/product-list.component.html',
-    styleUrls: ['./app/products/product-list.component.css']
+    styleUrls: ['./app/products/product-list.component.css'],
+    animations: [
+        trigger('slowlySlideInFromBelow', [
+          transition('void => *', [
+            style({transform: 'translateY(100%)'}),
+            animate('1000ms ease-in')
+          ])
+        ])
+      ]
 })
 export class ProductListComponent implements OnInit {
     pageTitle: string = 'Product List';
